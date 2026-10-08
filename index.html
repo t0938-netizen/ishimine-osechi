@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>料理いしみね｜おせちのお品書き</title>
+<meta name="description" content="料理いしみねのおせち。一品一品に込めた願いと、大将からのごあいさつ。">
+<style>
+:root{
+  --sumi:#2b2520;         /* 墨 */
+  --sumi-soft:#6b6058;
+  --kinari:#faf7f0;       /* 生成り */
+  --shiraki:#efe6d4;      /* 白木 */
+  --shiraki-d:#e2d5bc;
+  --noren:#2d5a3d;        /* のれんの緑 */
+  --noren-d:#204430;
+  --ai:#2d5a3d;           /* 主アクセント＝のれん緑 */
+  --ai-pale:#8aa992;
+  --ake:#2d5a3d;          /* 旧・朱 → 緑に統一 */
+  --kincha:#9c7634;       /* 金茶（控えのアクセント） */
+  --matsu:#2d5a3d;
+  --line:#e6ddcc;
+  --todo:#a6521f;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--shiraki);
+  color:var(--sumi);
+  font-family:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP",serif;
+  line-height:1.95;font-size:16px;letter-spacing:.03em;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:560px;margin:0 auto;background:var(--kinari);box-shadow:0 0 50px rgba(43,37,32,.08)}
+
+/* ---------- 市松模様 ---------- */
+.ichimatsu{
+  background-image:conic-gradient(var(--ichi,rgba(43,37,32,.055)) 25%,transparent 0 50%,var(--ichi,rgba(43,37,32,.055)) 0 75%,transparent 0);
+  background-size:26px 26px;
+}
+.band{height:13px;--ichi:rgba(45,90,61,.20);background-size:13px 13px}
+
+/* ---------- 表紙 ---------- */
+.cover{position:relative;padding:68px 28px 56px;text-align:center;background:var(--kinari);overflow:hidden}
+.cover .veil{position:absolute;inset:0;--ichi:rgba(43,37,32,.05);background-size:34px 34px;opacity:1}
+.cover > *{position:relative}
+.noren{
+  position:relative;width:196px;height:62px;margin:14px auto 26px;
+  background:var(--noren);
+  background-image:linear-gradient(90deg,
+    transparent 0 32%, var(--kinari) 32% 32.9%,
+    transparent 32.9% 67.1%, var(--kinari) 67.1% 68%, transparent 68%);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--kinari);font-size:17px;letter-spacing:.2em;text-indent:.2em;
+  box-shadow:0 4px 12px rgba(32,68,48,.22);
+}
+.noren::before{
+  content:"";position:absolute;top:-9px;left:50%;transform:translateX(-50%);
+  width:234px;height:3px;background:var(--noren-d);border-radius:2px;
+}
+.cover .era{font-size:12.5px;letter-spacing:.42em;color:var(--sumi-soft);margin:0 0 16px;text-indent:.42em}
+.cover h1{margin:0;font-size:33px;font-weight:400;letter-spacing:.24em;text-indent:.24em;line-height:1.5}
+.cover .sub{margin:14px 0 0;font-size:13.5px;letter-spacing:.34em;color:var(--sumi-soft);text-indent:.34em}
+.rule{display:flex;align-items:center;gap:12px;margin:28px auto 0;max-width:170px}
+.rule span{flex:1;height:1px;background:var(--shiraki-d)}
+.rule i{width:5px;height:5px;background:var(--ake);transform:rotate(45deg)}
+.cover .lead{margin:28px auto 0;max-width:19em;font-size:14.5px;line-height:2.15;text-align:left;color:var(--sumi)}
+
+/* ---------- 共通 ---------- */
+section{padding:50px 26px;background:var(--kinari)}
+.eyebrow{font-size:10.5px;letter-spacing:.4em;color:var(--ai);margin:0 0 10px;text-indent:.4em;font-family:system-ui,sans-serif}
+h2{margin:0 0 24px;font-size:20.5px;font-weight:400;letter-spacing:.14em;padding-bottom:13px;border-bottom:1px solid var(--line);position:relative}
+h2::after{content:"";position:absolute;left:0;bottom:-1px;width:40px;height:1px;background:var(--ake)}
+p{margin:0 0 1.1em}
+
+/* ---------- あいさつ ---------- */
+.aisatsu{background:#fdfbf6}
+.aisatsu .body{font-size:15.5px;line-height:2.25}
+.sign{margin-top:26px;text-align:right;font-size:13.5px;letter-spacing:.12em;color:var(--sumi-soft)}
+.sign strong{display:block;font-size:17px;letter-spacing:.2em;color:var(--sumi);font-weight:400;margin-top:4px}
+
+/* ---------- 見取り図 ---------- */
+.tier{margin-bottom:28px}
+.tier-label{display:flex;align-items:baseline;gap:10px;margin-bottom:9px;font-size:12.5px;letter-spacing:.2em;color:var(--sumi-soft)}
+.tier-label b{font-size:15px;font-weight:400;letter-spacing:.2em;color:var(--sumi)}
+.tier-label em{font-style:normal;font-size:11px;color:var(--ai);letter-spacing:.1em}
+.box{
+  display:grid;gap:2px;padding:8px;background:var(--shiraki-d);
+  border:1px solid #d3c3a4;border-radius:2px;box-shadow:0 5px 16px rgba(43,37,32,.09);
+}
+.box.g4{grid-template-columns:repeat(4,1fr)}
+.box.g3{grid-template-columns:repeat(3,1fr)}
+.cell{
+  appearance:none;border:0;cursor:pointer;font-family:inherit;
+  background:#fffdf8;color:var(--sumi);
+  font-size:12.5px;line-height:1.5;letter-spacing:.04em;
+  min-height:66px;padding:8px 4px;display:flex;align-items:center;justify-content:center;
+  text-align:center;transition:background .18s;
+}
+.cell.alt{background:#f1ece0}
+.cell:active,.cell:hover{background:var(--ai-pale);color:#fff}
+.cell.wide{grid-column:span 2}
+.cell.full{grid-column:1/-1;min-height:76px;font-size:13.5px}
+.hint{font-size:12px;color:var(--sumi-soft);letter-spacing:.06em;margin:2px 0 0}
+
+/* ---------- カード ---------- */
+.card{border:1px solid var(--line);background:#fffdf8;margin-bottom:13px;scroll-margin-top:16px}
+.card.flash{animation:flash 1.5s ease-out}
+@keyframes flash{0%,30%{background:#eef3ee;border-color:var(--ai-pale)}100%{background:#fffdf8;border-color:var(--line)}}
+.card > summary{list-style:none;cursor:pointer;padding:15px 18px;display:flex;align-items:center;gap:12px}
+.card > summary::-webkit-details-marker{display:none}
+.card .num{flex:none;width:25px;height:25px;border:1px solid var(--ai);color:var(--ai);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10.5px;font-family:system-ui,sans-serif}
+.card .name{flex:1;font-size:17px;letter-spacing:.1em}
+.card .name span{font-size:11.5px;color:var(--sumi-soft);letter-spacing:.06em;margin-left:8px}
+.card .chev{flex:none;color:var(--ai-pale);font-size:10.5px;transition:transform .2s;font-family:system-ui,sans-serif}
+.card[open] .chev{transform:rotate(90deg)}
+.card .inner{padding:0 18px 17px 55px}
+.wish{display:inline-block;font-size:11.5px;letter-spacing:.14em;color:var(--matsu);border:1px solid rgba(74,107,82,.32);padding:2px 10px;margin-bottom:11px;font-family:system-ui,sans-serif}
+.card .mean{margin:0;font-size:15px;line-height:2.05}
+.taisho{margin-top:13px;padding:11px 14px;background:#f6f1e6;border-left:2px solid var(--kincha);font-size:13.5px;line-height:1.95;color:var(--sumi-soft)}
+.taisho b{display:block;font-size:10.5px;letter-spacing:.2em;color:var(--kincha);font-weight:400;margin-bottom:3px;font-family:system-ui,sans-serif}
+
+/* ---------- 仕事・器 ---------- */
+.craft{background:#f6f1e6}
+.craft .lead2{font-size:15px;line-height:2.15}
+.note{border-top:1px solid var(--line);padding:16px 0 0;margin-top:18px}
+.note h3{margin:0 0 6px;font-size:15px;font-weight:400;letter-spacing:.12em;color:var(--ai)}
+.note p{margin:0;font-size:14.5px;line-height:2}
+
+/* ---------- 食べ方 ---------- */
+.dl{margin:0;border-top:1px solid var(--line)}
+.dl dt{padding:14px 0 4px;font-size:14px;letter-spacing:.1em;color:var(--ake)}
+.dl dd{margin:0;padding:0 0 14px;font-size:14.5px;border-bottom:1px solid var(--line);line-height:2}
+
+/* ---------- 店 ---------- */
+.shop{text-align:center;padding:52px 26px 44px;background:#fdfbf6;position:relative;overflow:hidden}
+.shop .veil{position:absolute;inset:0;--ichi:rgba(43,37,32,.04);background-size:30px 30px}
+.shop > *{position:relative}
+.shop h2{display:inline-block;border:0;padding:0;margin:0 0 18px}
+.shop h2::after{left:50%;transform:translateX(-50%);bottom:-8px}
+.shop .info{font-size:14.5px;line-height:2.1;color:var(--sumi-soft)}
+.shop .thanks{margin:28px 0 0;font-size:13px;letter-spacing:.22em;color:var(--ake)}
+
+/* ---------- 未確定 ---------- */
+.todo{
+  background:repeating-linear-gradient(135deg,#fdf4ea,#fdf4ea 7px,#f9e9d9 7px,#f9e9d9 14px);
+  border:1px dashed var(--todo);color:var(--todo);
+  padding:12px 14px;font-size:13px;line-height:1.9;margin:0 0 16px;
+  font-family:system-ui,sans-serif;letter-spacing:.02em;
+}
+.todo b{letter-spacing:.1em}
+footer{padding:20px 26px 32px;text-align:center;font-size:11px;color:#a89e92;letter-spacing:.1em;font-family:system-ui,sans-serif;background:var(--kinari)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="veil ichimatsu"></div>
+    <div class="noren">祝</div>
+    <p class="era">令和九年 元旦</p>
+    <h1>料理いしみね</h1>
+    <p class="sub">お せ ち の お 品 書 き</p>
+    <div class="rule"><span></span><i></i><span></span></div>
+    <p class="lead">お重に詰めた一品一品には、<br>この一年をどう過ごしてほしいかという<br>願いが入っています。<br>召し上がる前に、少しだけ。</p>
+  </header>
+  <div class="band ichimatsu"></div>
+
+  <!-- ===== 大将のごあいさつ ===== -->
+  <section class="aisatsu">
+    <p class="eyebrow">GREETING</p>
+    <h2>大将より</h2>
+
+    <div class="todo">
+      <b>▼ 石嶺さんご本人の文章が入ります（200〜300字）</b><br>
+      下の三つに答えていただくと、そのまま三段落になります。<br>
+      ①今年、お客さんに一番お礼を言いたいことは<br>
+      ②このおせちで一番手をかけた一品と、その理由は<br>
+      ③新しい年、お客さんにどうあってほしいか
+    </div>
+
+    <div class="body">
+      <p>（以下は字数の見本です。実際の文章に差し替えます）</p>
+      <p>今年も料理いしみねをご利用いただき、ありがとうございました。カウンターに座ってくださるお客さん、折詰を頼んでくださるお客さん、その一人一人に支えられて、今年も無事に年の瀬を迎えることができました。</p>
+      <p>このお重は、十二月の終わりから仕込みを始めて、一品ずつ手をかけて詰めています。なかでも煮しめは、素材それぞれ火の入り方が違うので、別々に炊いてから合わせました。地味な一品ですが、ぜひ召し上がってみてください。</p>
+      <p>新しい年が、皆さんとご家族にとって、穏やかで笑いの多い一年になりますように。来年もどうぞよろしくお願いします。</p>
+      <p class="sign">料理いしみね<strong>石嶺 誠</strong></p>
+    </div>
+  </section>
+
+  <!-- ===== 見取り図 ===== -->
+  <section>
+    <p class="eyebrow">MAP</p>
+    <h2>お重の見取り図</h2>
+    <div id="jubako"></div>
+    <p class="hint">気になる一品をおしてください。下の解説にうつります。</p>
+  </section>
+
+  <!-- ===== 願い ===== -->
+  <section>
+    <p class="eyebrow">MEANING</p>
+    <h2>一品に込めた願い</h2>
+    <div class="todo">
+      <b>▼ 品目は定番おせちのたたき台です</b><br>
+      今年のお品書きが決まりましたら差し替えます。HTML末尾の <code>OSECHI</code> 一か所を直すと、見取り図と解説の両方が変わります。
+    </div>
+    <div id="cards"></div>
+  </section>
+
+  <!-- ===== いしみねの仕事 ===== -->
+  <section class="craft">
+    <p class="eyebrow">OUR WORK</p>
+    <h2>いしみねの仕事</h2>
+    <p class="lead2">おせちの縁起は、どのお店でも同じことが書かれています。ここからは、このお重がいしみねのものである理由です。</p>
+
+    <div class="note">
+      <h3>出汁 ― マグロ節と真昆布</h3>
+      <p>当店の出汁は、マグロ節と北海道の真昆布でとっています。マグロ節はカツオ節より酸味が少なく、あっさりしているのに旨味がしっかり出ます。煮しめの味は、この出汁の味です。</p>
+    </div>
+
+    <div class="note">
+      <h3>食材 ― その日のものを、その日に</h3>
+      <p>店では、全国から空輸で届いた食材をその日のうちにお出ししています。朝獲れの魚や野菜が昼の一時までに店に入る。おせちの仕込みも、同じ考え方で素材を選びました。</p>
+    </div>
+
+    <div class="note">
+      <h3>器 ― 沖縄の作家のもの</h3>
+      <p>店で使う器は、沖縄で活躍している作家さんの作品だけです。やちむん市場や工房を回って、自分の目で選んでいます。地元沖縄の心を、料理と器の両方で表したいと思っています。</p>
+      <div class="todo" style="margin:12px 0 0">
+        <b>▼ お重や蓋に使っている器・作家名があれば教えてください</b><br>
+        「このお重は○○さんの作です」が入ると、ここが一番強い一節になります。
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 食べ方 ===== -->
+  <section>
+    <p class="eyebrow">HOW TO</p>
+    <h2>おいしく召し上がるために</h2>
+    <div class="todo">
+      <b>▼ お店の実際の案内に差し替えが必要です</b><br>
+      日持ち・保存温度・温めの可否は、こちらで推測できません。現状の案内をお聞かせください。
+    </div>
+    <dl class="dl">
+      <dt>召し上がる順</dt>
+      <dd>祝い肴（黒豆・数の子・田作り）から箸をつけるのが昔からの形です。もっとも、お好きなものからで構いません。</dd>
+      <dt>温めについて</dt>
+      <dd>煮しめと焼き物は、器に移して温めると香りが立ちます。酢の物・きんとん・かまぼこは冷たいままで。</dd>
+      <dt>保存</dt>
+      <dd>（要確認）冷蔵で○日まで。取り分けた分はその日のうちにお召し上がりください。</dd>
+      <dt>アレルギーについて</dt>
+      <dd>原材料は同梱の紙のお品書きをご確認ください。ご不明な点はお電話でお尋ねください。</dd>
+    </dl>
+  </section>
+
+  <div class="band ichimatsu"></div>
+  <!-- ===== 店 ===== -->
+  <section class="shop">
+    <div class="veil ichimatsu"></div>
+    <h2>料理いしみね</h2>
+    <p class="info">
+      沖縄の小さな和食屋です<br>
+      那覇市松尾2-17-29 1F（開南バス停近く）<br>
+      18:00〜24:00（L.O. 23:00）／日曜定休<br>
+      098-963-9772
+    </p>
+    <p class="thanks">本年もありがとうございました</p>
+  </section>
+
+  <footer>料理いしみね／おせちのお品書き（見本）</footer>
+</div>
+
+<script>
+/* =========================================================
+   お品書きデータ ― ここだけ直せば図・解説の両方が変わります
+   tier : 段の見出し / note: 小見出し / cols: 列数(3 or 4)
+   items: name 品名 / kana 読み / wish 願いの一言 / mean 由来
+          taisho 大将のひとこと（空なら案内文） / span 1,2,'full'
+   ========================================================= */
+const OSECHI = [
+  {
+    tier:"一の重", note:"祝い肴・口取り", cols:4, items:[
+      {name:"黒豆", kana:"くろまめ", wish:"まめに暮らす", mean:"まめに働き、まめに健やかに。しわが寄るまで長生きするようにと、あえてしわを寄せて炊く炊き方もあります。", taisho:""},
+      {name:"数の子", kana:"かずのこ", wish:"子孫繁栄", mean:"卵の数が多いことから、子や孫に恵まれ家が続くようにという願い。親の鰊に「二親」を重ねる見方もあります。", taisho:""},
+      {name:"田作り", kana:"たづくり", wish:"豊作", mean:"小魚を田の肥料にした昔にちなみ、実りの多い年になるようにと願う一品。「ごまめ」とも呼ばれます。", taisho:""},
+      {name:"紅白かまぼこ", kana:"こうはくかまぼこ", wish:"日の出", mean:"半円の形は初日の出。赤はめでたさと魔除け、白は清らかさを表します。", taisho:""},
+      {name:"伊達巻", kana:"だてまき", wish:"学び", mean:"巻いた形が巻物に似ているので、知識が増えるようにという願い。華やかな姿から伊達者の名がついたと言われます。", taisho:""},
+      {name:"栗きんとん", kana:"くりきんとん", wish:"金運", mean:"黄金色の見た目を「金団」と書き、財に恵まれるように。栗は昔から「勝ち栗」として縁起の良いものです。", taisho:""},
+      {name:"昆布巻", kana:"こぶまき", wish:"よろこぶ", mean:"「よろこぶ」の語に重ねて。巻いた形は結び目のように、人と人の縁がつながることを表します。", taisho:""},
+      {name:"たたき牛蒡", kana:"たたきごぼう", wish:"地に根を張る", mean:"深く根を張る牛蒡にあやかって、家が土地に根づくように。たたいて開く形は開運を表します。", taisho:""}
+    ]
+  },
+  {
+    tier:"二の重", note:"焼き物・酢の物", cols:3, items:[
+      {name:"海老", kana:"えび", wish:"長寿", mean:"腰が曲がるまで長生きするように。脱皮をくり返して育つことから、新しくなり続ける姿にも重ねます。", taisho:""},
+      {name:"鯛", kana:"たい", wish:"めでたい", mean:"「めでたい」の語に重ねた祝いの魚。頭から尾まで全きことを尊びます。", taisho:""},
+      {name:"鰤の照焼", kana:"ぶりのてりやき", wish:"出世", mean:"成長につれて名が変わる出世魚。立場が上がり、望みが通るようにという願いを込めます。", taisho:""},
+      {name:"紅白なます", kana:"こうはくなます", wish:"平安", mean:"大根と人参の紅白は、祝いの水引を表します。さっぱりした酸味が、重い味の箸休めになります。", taisho:""},
+      {name:"菊花かぶ", kana:"きっかかぶ", wish:"無病息災", mean:"菊は邪気を払い、長寿を願う花。蕪を菊の形に飾り切りして添えます。", taisho:""},
+      {name:"酢蓮", kana:"すばす", wish:"見通し", mean:"穴があいた蓮根は、先の見通しがきくように。泥の中から清らかな花を咲かせる姿も尊ばれます。", taisho:""}
+    ]
+  },
+  {
+    tier:"三の重", note:"煮しめ", cols:3, items:[
+      {name:"お煮しめ", kana:"おにしめ", span:"full", wish:"家族が一つに",
+       mean:"一つの鍋で多くの素材を煮ることから、家族が仲よく結ばれるようにという願いを込めた一品です。里芋は子芋がたくさんつくので子孫繁栄、くわいは大きな芽が出るので出世、蓮根は見通しのよさ、牛蒡は根を張ること、人参の赤はめでたさ。五つの願いが一皿に重なっています。",
+       taisho:""}
+    ]
+  }
+];
+
+/* ---- 描画 ---- */
+(function(){
+  const jubako = document.getElementById('jubako');
+  const cards  = document.getElementById('cards');
+  let n = 0;
+
+  OSECHI.forEach(tier=>{
+    const cols = tier.cols || 3;
+    const t = document.createElement('div');
+    t.className = 'tier';
+    const lab = document.createElement('div');
+    lab.className = 'tier-label';
+    lab.innerHTML = `<b>${tier.tier}</b><em>${tier.note||''}</em>`;
+    const box = document.createElement('div');
+    box.className = 'box g' + cols;
+
+    let slot = 0; // 市松の塗り分け用
+    tier.items.forEach(it=>{
+      n++;
+      const id = 'item-' + n;
+      const span = it.span==='full' ? cols : (it.span===2 ? 2 : 1);
+      const row = Math.floor(slot / cols), col = slot % cols;
+      const alt = ((row + col) % 2 === 1);
+      slot += span;
+
+      const cell = document.createElement('button');
+      cell.type = 'button';
+      cell.className = 'cell'
+        + (it.span==='full' ? ' full' : it.span===2 ? ' wide' : '')
+        + (alt && it.span!=='full' ? ' alt' : '');
+      cell.textContent = it.name;
+      cell.setAttribute('aria-label', it.name + 'の解説へ');
+      cell.addEventListener('click', ()=>{
+        const target = document.getElementById(id);
+        target.open = true;
+        target.scrollIntoView({behavior:'smooth', block:'center'});
+        target.classList.remove('flash');
+        void target.offsetWidth;
+        target.classList.add('flash');
+      });
+      box.appendChild(cell);
+
+      const card = document.createElement('details');
+      card.className = 'card';
+      card.id = id;
+      card.innerHTML =
+        `<summary>
+           <span class="num">${n}</span>
+           <span class="name">${it.name}<span>${it.kana||''}</span></span>
+           <span class="chev">▶</span>
+         </summary>
+         <div class="inner">
+           ${it.wish ? `<span class="wish">${it.wish}</span>` : ''}
+           <p class="mean">${it.mean}</p>
+           <div class="taisho"><b>大将のひとこと</b>${it.taisho || '（任意・二十字ほど。入れない品があっても構いません）'}</div>
+         </div>`;
+      cards.appendChild(card);
+    });
+
+    t.appendChild(lab); t.appendChild(box); jubako.appendChild(t);
+  });
+})();
+</script>
+</body>
+</html>
