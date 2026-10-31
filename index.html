@@ -66,6 +66,9 @@ body{
 }
 .cover .era{font-size:12.5px;letter-spacing:.42em;color:var(--sumi-soft);margin:0 0 16px;text-indent:.42em}
 .cover h1{margin:0;font-size:33px;font-weight:400;letter-spacing:.24em;text-indent:.24em;line-height:1.5}
+/* ロゴ画像：白地を乗算で生成りに溶かす */
+.cover h1.logo{line-height:0;letter-spacing:0;text-indent:0}
+.cover h1.logo img{display:block;width:78%;max-width:300px;height:auto;margin:-6px auto -4px;mix-blend-mode:multiply}
 .cover .sub{margin:14px 0 0;font-size:13.5px;letter-spacing:.34em;color:var(--sumi-soft);text-indent:.34em}
 .rule{display:flex;align-items:center;gap:12px;margin:28px auto 0;max-width:170px}
 .rule span{flex:1;height:1px;background:var(--shiraki-d)}
@@ -165,7 +168,7 @@ footer{padding:20px 26px 32px;text-align:center;font-size:11px;color:#a89e92;let
     <div class="veil ichimatsu"></div>
     <div class="noren">祝</div>
     <p class="era">令和九年 元旦</p>
-    <h1>料理いしみね</h1>
+    <h1 class="logo"><img src="ishimine_logo.jpg" alt="料理いしみね"></h1>
     <p class="sub">お せ ち の お 品 書 き</p>
     <div class="rule"><span></span><i></i><span></span></div>
     <p class="lead">お重に詰めた一品一品には、<br>この一年をどう過ごしてほしいかという<br>願いが入っています。<br>召し上がる前に、少しだけ。</p>
