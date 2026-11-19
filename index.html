@@ -161,19 +161,19 @@ p{margin:0 0 1.1em}
 footer{padding:20px 26px 32px;text-align:center;font-size:11px;color:#a89e92;letter-spacing:.1em;font-family:system-ui,sans-serif;background:var(--kinari)}
 /* ---------- BGM ---------- */
 .bgm-btn{
-  position:fixed;right:16px;bottom:16px;z-index:50;
-  width:48px;height:48px;border-radius:50%;border:1px solid var(--noren-d);
-  background:var(--noren);color:var(--kinari);font-size:20px;line-height:1;
-  font-family:inherit;cursor:pointer;box-shadow:0 2px 10px rgba(43,37,32,.25);
-  display:flex;align-items:center;justify-content:center;opacity:.92;
+  position:fixed;right:14px;bottom:14px;z-index:50;
+  padding:9px 16px 9px 14px;border-radius:999px;border:1px solid var(--noren);
+  background:var(--kinari);color:var(--noren);font-size:14px;line-height:1;letter-spacing:.12em;
+  font-family:inherit;cursor:pointer;box-shadow:0 2px 10px rgba(43,37,32,.22);
+  display:flex;align-items:center;gap:7px;opacity:.95;
 }
-.bgm-btn.off{background:var(--kinari);color:var(--noren)}
-.bgm-btn.off::after{content:"";position:absolute;width:26px;height:1.5px;background:currentColor;transform:rotate(-45deg)}
+.bgm-btn i{font-style:normal;font-size:16px}
+.bgm-btn.on{background:var(--noren);color:var(--kinari)}
 </style>
 </head>
 <body>
-<audio id="bgm" src="ishimine_bgm.mp3" loop preload="auto"></audio>
-<button type="button" id="bgmBtn" class="bgm-btn off" aria-label="音楽を流す">♪</button>
+<audio id="bgm" src="ishimine_bgm.mp3" loop preload="none"></audio>
+<button type="button" id="bgmBtn" class="bgm-btn" aria-label="テーマソングを流す"><i>♪</i><span>テーマソング</span></button>
 <div class="wrap">
 
   <header class="cover">
@@ -385,31 +385,21 @@ const OSECHI = [
     t.appendChild(lab); t.appendChild(box); jubako.appendChild(t);
   });
 })();
-/* ---- BGM：自動再生を試し、止められたら最初のタップで流す ---- */
+/* ---- BGM：「テーマソング」ボタンを押したときだけ流す ---- */
 (function(){
   const a = document.getElementById('bgm');
   const btn = document.getElementById('bgmBtn');
-  let userOff = false;
+  const label = btn.querySelector('span');
   a.volume = 0.5;
   const show = ()=>{
     const on = !a.paused;
-    btn.classList.toggle('off', !on);
-    btn.setAttribute('aria-label', on ? '音楽を止める' : '音楽を流す');
+    btn.classList.toggle('on', on);
+    label.textContent = on ? '止める' : 'テーマソング';
+    btn.setAttribute('aria-label', on ? 'テーマソングを止める' : 'テーマソングを流す');
   };
   a.addEventListener('play', show);
   a.addEventListener('pause', show);
-  const tryPlay = ()=>{ if(!userOff) a.play().catch(()=>{}); };
-  const first = (e)=>{
-    if(e.target.closest && e.target.closest('#bgmBtn')) return;
-    tryPlay();
-    if(!a.paused) ['pointerdown','touchend','keydown'].forEach(t=>document.removeEventListener(t, first));
-  };
-  ['pointerdown','touchend','keydown'].forEach(t=>document.addEventListener(t, first));
-  btn.addEventListener('click', ()=>{
-    if(a.paused){ userOff = false; a.play().catch(()=>{}); }
-    else { userOff = true; a.pause(); }
-  });
-  tryPlay();
+  btn.addEventListener('click', ()=>{ a.paused ? a.play().catch(()=>{}) : a.pause(); });
 })();
 </script>
 </body>
