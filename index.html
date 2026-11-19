@@ -83,7 +83,10 @@ h2::after{content:"";position:absolute;left:0;bottom:-1px;width:40px;height:1px;
 p{margin:0 0 1.1em}
 
 /* ---------- あいさつ ---------- */
-.aisatsu{background:#fdfbf6}
+.aisatsu{background:#fdfbf6;position:relative;overflow:hidden}
+.aisatsu > *{position:relative}
+.aisatsu > .ura{position:absolute;inset:0;pointer-events:none}
+.aisatsu > .ura img{width:100%;height:100%;object-fit:cover;object-position:center top;opacity:.13;mix-blend-mode:multiply}
 .aisatsu .body{font-size:15.5px;line-height:2.25}
 .sign{margin-top:26px;text-align:right;font-size:13.5px;letter-spacing:.12em;color:var(--sumi-soft)}
 .sign strong{display:block;font-size:17px;letter-spacing:.2em;color:var(--sumi);font-weight:400;margin-top:4px}
@@ -169,29 +172,10 @@ footer{padding:20px 26px 32px;text-align:center;font-size:11px;color:#a89e92;let
 }
 .bgm-btn i{font-style:normal;font-size:16px}
 .bgm-btn.on{background:var(--noren);color:var(--kinari)}
-.theme{
-  position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;
-  background:rgba(43,37,32,.82);padding:18px;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s;
-}
-.theme.show{opacity:1;visibility:visible}
-.theme figure{margin:0;position:relative;max-width:min(520px,100%);max-height:100%}
-.theme img{display:block;width:100%;height:auto;max-height:calc(100vh - 36px);object-fit:contain;
-  border-radius:3px;box-shadow:0 8px 40px rgba(0,0,0,.45)}
-.theme .close{
-  position:absolute;top:8px;right:8px;width:38px;height:38px;border-radius:50%;
-  border:1px solid rgba(250,247,240,.7);background:rgba(43,37,32,.55);color:var(--kinari);
-  font-size:20px;line-height:1;cursor:pointer;font-family:inherit;
-}
 </style>
 </head>
 <body>
 <audio id="bgm" src="ishimine_bgm.mp3" loop preload="none"></audio>
-<div id="theme" class="theme" aria-hidden="true">
-  <figure>
-    <img src="ishimine_theme.jpg" alt="笑う門には、うまいあり。料理いしみね 石嶺 誠" loading="lazy">
-    <button type="button" class="close" aria-label="閉じる">×</button>
-  </figure>
-</div>
 <button type="button" id="bgmBtn" class="bgm-btn" aria-label="テーマソングを流す"><i>♪</i><span>テーマソング</span></button>
 <div class="wrap">
 
@@ -208,6 +192,7 @@ footer{padding:20px 26px 32px;text-align:center;font-size:11px;color:#a89e92;let
 
   <!-- ===== 大将のごあいさつ ===== -->
   <section class="aisatsu">
+    <div class="ura" aria-hidden="true"><img src="ishimine_theme.jpg" alt="" loading="lazy"></div>
     <p class="eyebrow">GREETING</p>
     <h2>大将より</h2>
 
@@ -418,14 +403,7 @@ const OSECHI = [
   };
   a.addEventListener('play', show);
   a.addEventListener('pause', show);
-  const theme = document.getElementById('theme');
-  const open  = ()=>{ theme.classList.add('show'); theme.setAttribute('aria-hidden','false'); };
-  const close = ()=>{ theme.classList.remove('show'); theme.setAttribute('aria-hidden','true'); };
-  btn.addEventListener('click', ()=>{
-    if(a.paused){ a.play().catch(()=>{}); open(); }
-    else { a.pause(); close(); }
-  });
-  theme.addEventListener('click', close);   // 画像や×を押すと閉じる（曲は流れたまま）
+  btn.addEventListener('click', ()=>{ a.paused ? a.play().catch(()=>{}) : a.pause(); });
 })();
 </script>
 </body>
